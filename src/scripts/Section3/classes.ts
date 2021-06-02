@@ -1,3 +1,4 @@
+// this only works for newer browsers see comments for changes so that code can run on older browsers 
 class Engine {
     constructor(public horsePower: number, public engineType: string) { }
 }
@@ -7,12 +8,15 @@ class Cars {
 
     constructor(engine: Engine) {
         this.engine = engine;
+        //this.setEngine(engine);
     }
 
+    //getEngine(): Engine
     get engine(): Engine {
         return this._engine;
     }
 
+    //setEngine(): Engine
     set engine(value: Engine) {
         if (value === undefined) throw 'Please supply an engine';
         this._engine = value;

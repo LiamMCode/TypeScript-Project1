@@ -1,3 +1,4 @@
+// this only works for newer browsers see comments for changes so that code can run on older browsers 
 var Engine = /** @class */ (function () {
     function Engine(horsePower, engineType) {
         this.horsePower = horsePower;
@@ -8,11 +9,14 @@ var Engine = /** @class */ (function () {
 var Cars = /** @class */ (function () {
     function Cars(engine) {
         this.engine = engine;
+        //this.setEngine(engine);
     }
     Object.defineProperty(Cars.prototype, "engine", {
+        //getEngine(): Engine
         get: function () {
             return this._engine;
         },
+        //setEngine(): Engine
         set: function (value) {
             if (value === undefined)
                 throw 'Please supply an engine';
