@@ -53,11 +53,11 @@ var Accessory = /** @class */ (function () {
     return Accessory;
 }());
 var Auto = /** @class */ (function () {
-    function Auto(basePrice, engine, make, model) {
-        this.engine = engine;
-        this.basePrice = basePrice;
-        this.make = make;
-        this.model = model;
+    function Auto(options) {
+        this.engine = options.engine;
+        this.basePrice = options.basePrice;
+        this.make = options.make;
+        this.model = options.model;
     }
     Auto.prototype.calculateTotal = function () {
         var taxRate = .08;
@@ -105,25 +105,33 @@ var Auto = /** @class */ (function () {
 }());
 var Truck = /** @class */ (function (_super) {
     __extends(Truck, _super);
-    function Truck(basePrice, engine, make, model, bedLength, fourByFour) {
-        var _this = _super.call(this, basePrice, engine, make, model) || this;
-        _this.bedLength = bedLength;
-        _this.fourByFour = fourByFour;
+    function Truck(options) {
+        var _this = _super.call(this, options) || this;
+        _this.bedLength = options.bedLength;
+        _this.fourByFour = options.fourByFour;
         return _this;
     }
     return Truck;
 }(Auto));
 window.onload = function () {
-    var truck = new Truck(40000, new Engines(300, 'V8'), 'Chevy', 'Silverado', 'Long Bed', true);
-    var auto = new Auto(40000, new Engines(250, 'V6'), 'Ford', 'Mustang');
-    var myEngine = auto.engine;
-    console.log(myEngine.horsePower);
-    alert(myEngine.horsePower.toString());
+    // var truck = new Truck(40000, new Engines(300, 'V8'), 'Chevy', 'Silverado', 'Long Bed', true);
+    // var auto = new Auto(40000, new Engines(250, 'V6'), 'Ford', 'Mustang');
+    // var myEngine = <Engines>auto.engine;
+    // alert(myEngine.horsePower.toString());
     // alert(truck.engine.engineType);
     // alert(truck.bedLength);
     // alert(truck.calculateTotal().toString());
-    truck.addAccessories(new Accessory(1234, 'Sunroof'), new Accessory(231, 'Towing Package'));
-    truck.engine.start(function (status, engineType) {
-        alert(engineType + ' was started');
+    // truck.addAccessories(new Accessory(1234, 'Sunroof'), new Accessory(231, 'Towing Package'));
+    // truck.engine.start((status: boolean, engineType: string) => {
+    //     alert(engineType + ' was started');
+    // });
+    var truck = new Truck({
+        engine: new Engines(250, 'V8'),
+        basePrice: 45000,
+        make: 'Ford',
+        model: 'F-150',
+        bedLength: 'Long',
+        fourByFour: true
     });
+    alert(truck.bedLength);
 };
