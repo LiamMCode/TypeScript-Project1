@@ -30,6 +30,21 @@ var Engines = /** @class */ (function () {
     };
     return Engines;
 }());
+var CustomEngine = /** @class */ (function () {
+    function CustomEngine() {
+    }
+    CustomEngine.prototype.start = function (callback) {
+        window.setTimeout(function () {
+            callback(true, 'V6');
+        }, 1000);
+    };
+    CustomEngine.prototype.stop = function (callback) {
+        window.setTimeout(function () {
+            callback(true, 'V6');
+        }, 1000);
+    };
+    return CustomEngine;
+}());
 var Accessory = /** @class */ (function () {
     function Accessory(accessoryNumber, title) {
         this.accessoryNumber = accessoryNumber;
@@ -100,6 +115,10 @@ var Truck = /** @class */ (function (_super) {
 }(Auto));
 window.onload = function () {
     var truck = new Truck(40000, new Engines(300, 'V8'), 'Chevy', 'Silverado', 'Long Bed', true);
+    var auto = new Auto(40000, new Engines(250, 'V6'), 'Ford', 'Mustang');
+    var myEngine = auto.engine;
+    console.log(myEngine.horsePower);
+    alert(myEngine.horsePower.toString());
     // alert(truck.engine.engineType);
     // alert(truck.bedLength);
     // alert(truck.calculateTotal().toString());

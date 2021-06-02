@@ -1,6 +1,11 @@
-class Engines {
-    constructor(public horsePower: number, public engineType: string) { }
+interface iEngine {
+    start(callback: (startStatus: boolean, engineType: string) => void): void;
+    stop(callback: (stopStatus: boolean, engineType: string) => void): void;
+}
 
+class Engines implements iEngine{
+    constructor(public horsePower: number, public engineType: string) { }
+    
     start(callback: (startStatus: boolean, engineType: string) => void) {
         window.setTimeout(() => {
             callback(true, this.engineType);
@@ -14,18 +19,32 @@ class Engines {
     }
 }
 
+class CustomEngine implements iEngine{
+    start(callback: (startStatus: boolean, engineType: string) => void) {
+        window.setTimeout(() => {
+            callback(true, 'V6');
+        }, 1000);
+    }
+
+    stop(callback: (stopStatus: boolean, engineType: string) => void) {
+        window.setTimeout(() => {
+            callback(true, 'V6');
+        }, 1000);
+    }
+}
+
 class Accessory {
     constructor(public accessoryNumber: number, public title: string) {}
 }
 
 class Auto {
     private _basePrice: number;
-    private _engine: Engines;
+    private _engine: iEngine;
     make: string;
     model: string;
     accessoryList: string;
 
-    constructor(basePrice: number, engine: Engines, make: string, model: string) {
+    constructor(basePrice: number, engine: iEngine, make: string, model: string) {
         this.engine = engine;
         this.basePrice = basePrice;
         this.make = make; 
@@ -57,10 +76,10 @@ class Auto {
         this._basePrice = value;
     }
 
-    get engine(): Engines {
+    get engine(): iEngine {
         return this._engine;
     }
-    set engine(value: Engines) {
+    set engine(value: iEngine) {
         if (value === undefined) throw 'Please supply and engine';
         this._engine = value;
     }
@@ -79,6 +98,9 @@ class Truck extends Auto {
 
 window.onload = function() {
     var truck = new Truck(40000, new Engines(300, 'V8'), 'Chevy', 'Silverado', 'Long Bed', true);
+    var auto = new Auto(40000, new Engines(250, 'V6'), 'Ford', 'Mustang');
+    var myEngine = <Engines>auto.engine;
+    alert(myEngine.horsePower.toString());
     // alert(truck.engine.engineType);
     // alert(truck.bedLength);
     // alert(truck.calculateTotal().toString());
