@@ -44,7 +44,7 @@
     background-color: #242323;
     margin-left: 5px;
     vertical-align: middle;
-    background-image: url('./images/bg.png'); 
+    background-image: url("../images/bg.png"); 
 }
 
 .NormalWidth
@@ -64,15 +64,15 @@
 }
 .ButtonStart
 {
-    background-image: url('./images/start.png');
+    background-image: url('../images/start.png');
 }
 .ButtonPause
 {
-    background-image: url('./images/pause.png');
+    background-image: url('../images/pause.png');
 }
 .ButtonClear
 {
-    background-image: url('./images/clear.png');
+    background-image: url('../images/clear.png');
 }
 .Button
 {
