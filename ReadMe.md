@@ -7,4 +7,3 @@ following course - `https://app.pluralsight.com/library/courses/typescript/table
 - need to install extension knockout.js snippets for VS code
 - if an error msg pops up in console saying Accessors are only avaliable when targetting ECMAScript5 and higher use `tsc -t es5 fileName.ts` to get the .js file 
 - create a tsconfig.json file using `tsc --init` in terminal
-- 
